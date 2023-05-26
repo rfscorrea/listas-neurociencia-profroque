@@ -12,6 +12,8 @@ main.py
 README.md
 ForwardEuler.ipynb
 Hodgkin_Huxley.ipynb
+.gitignore
+.gitattributes
 
 # Distribution / packaging
 .Python
