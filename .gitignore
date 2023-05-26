@@ -6,6 +6,13 @@ __pycache__/
 # C extensions
 *.so
 
+#
+LICENSE
+main.py
+README.md
+ForwardEuler.ipynb
+Hodgkin_Huxley.ipynb
+
 # Distribution / packaging
 .Python
 build/
