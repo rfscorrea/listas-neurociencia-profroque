@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf7b394c-6839-44f6-9422-2d44d44e9f70" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/exercicio2-comdisparo.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exercicio2-semdisparo.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exercicio3-comdisparo.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exercicio3-semdisparo.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exercicio4-doisdisparos.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exercicio4-semdisparo.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exercicio4-tremdisparos.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exercicio4-umdisparo.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/exercicio1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/exercicio1.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercicio2.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercicio3.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercicio4.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/metodoEuler-HodgkingHuxley/ForwardEuler.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/metodoEuler-HodgkingHuxley/Hodgkin_Huxley.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercicio2-comdisparo.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/exercicio2-comdisparo.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercicio2-semdisparo.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/exercicio2-semdisparo.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercicio3-comdisparo.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/exercicio3-comdisparo.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercicio3-semdisparo.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/exercicio3-semdisparo.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercicio4-doisdisparos.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/exercicio4-doisdisparos.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercicio4-semdisparo.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/exercicio4-semdisparo.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercicio4-tremdisparos.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/exercicio4-tremdisparos.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercicio4-umdisparo.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/exercicio4-umdisparo.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,21 +39,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rafae/PycharmProjects/pythonProject&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/lista2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\rafae\PycharmProjects\pythonProject" />
@@ -229,7 +224,7 @@
       <workItem from="1685098138939" duration="4955000" />
       <workItem from="1685107259937" duration="2875000" />
       <workItem from="1685112161533" duration="3716000" />
-      <workItem from="1685158300475" duration="4021000" />
+      <workItem from="1685158300475" duration="4625000" />
     </task>
     <servers />
   </component>
