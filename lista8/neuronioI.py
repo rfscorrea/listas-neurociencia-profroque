@@ -1,56 +1,57 @@
-from numpy import exp, tanh
+from numpy import exp
 
 
-def dvdt(v,h,n,j):
-    C_m = 1
-    g_Na = 35
-    g_K = 9
-    g_V = 0.1
-    E_Na = 55
-    E_K = -90
-    E_V = -65
-    eq = (g_Na *h* x_inf('m',v)**3 * (E_Na-v) + g_K * n**4 * (E_K-v) + g_V * (E_V-v) + j)/C_m
+def dvdt(v, h, n, jinj, jsin):
+    Cm = 1
+    gNa, gK, gV = 35, 9, 0.1
+    ENa, EK, EV = 55, -90, -65
+    minf = x_inf('m', v)
+    eq = (gNa * minf**3 * h * (ENa-v) + gK * n**4 * (EK-v) + gV*(EV-v) + jsin + jinj) / Cm
     return eq
 
 
 def dhdt(v, h):
-    eq = (x_inf('h', v) - h) / tau_x('h', v)
+    hinf = x_inf('h', v)
+    tauh = tau_x('h', v)
+    eq = (hinf - h) / tauh
     return eq
 
 
 def dndt(v, n):
-    eq = (x_inf('n', v) - n) / tau_x('n', v)
-    return eq
-
-
-def dsdt(v, s):
-    taus = 0.3
-    taud = 9
-    eq = (1+tanh(v/4)/2) * (1-s)/taus - s/taud
+    ninf = x_inf('n', v)
+    taun = tau_x('n', v)
+    eq = (ninf - n) / taun
     return eq
 
 
 def x_inf(x, v):
-    return alpha(x, v) / (alpha(x, v)+beta(x, v))
+    a = alpha(x, v)
+    b = beta(x, v)
+    eq = a / (a + b)
+    return eq
 
 
 def tau_x(x, v):
-    return 0.2 / (alpha(x, v)+beta(x, v))
+    a = alpha(x, v)
+    b = beta(x, v)
+    eq = 0.2 / (a + b)
+    return eq
 
 
 def alpha(x, v):
     eq = {
-        'm': 0.1*(v+35)/(1-exp(-(v+35)/10)),
-        'h': 0.07*exp(-(v+58)/20),
-        'n': 0.01*(v+34)/(1-exp(-0.1*(v+34)))
+        'm': 0.1 * (v+35) / (1-exp(-(v+35)/10)),
+        'h': 0.07 * exp(-(v+58)/10),
+        'n': 0.01 * (v+34) / (1-exp(-0.1*(v+34)))
     }
     return eq[x]
 
 
 def beta(x, v):
     eq = {
-        'm': 4*exp(-(v+60)/18),
-        'h': 1/(exp(-0.1*(v+28))+1),
-        'n': 0.125*exp(-(v+44)/80)
+        'm': 4 * exp(-(v+60)/18),
+        'h': 1 / exp(-0.1*(v+28)+1),
+        'n': 0.125 * exp(-(v+44)/80)
     }
     return eq[x]
+
