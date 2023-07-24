@@ -1,65 +1,96 @@
-from numpy import exp, tanh
+from numpy import tanh, exp
 
 
-def neuronioO(v, h, n, m, a, b, r, s, v_pre, j_sin, j_inj):
-    C_m = 1.3 #uF/cm2
-    tau_s = 0.2 #ms
-    tau_d = 20   #ms
-    g_Na = 30  #mS/cm2
-    g_V = 0.05   #mS/cm2
-    g_K = 23   #mS/cm2
-    g_A = 16    #mS/cm2
-    g_h = 12    #mS/cm2
-    E_K = -100  #mV
-    E_Na = 90   #mV
-    E_V = -70   #mV
-    E_A = -90   #mV
-    E_h = -32.9 #mV
-    E_rev = -80   #mV
-
-    dvdt = (g_Na * m**3 * h * (E_Na - v) + g_K * n**4 * (E_K - v) + g_A*a*b*(E_A - v)
-            + g_h*r*(E_h - v) + g_V*(E_V - v) + j_sin + j_inj)/C_m
-    dmdt = (x_inf('m', v) - m) / tau_x('m', v)
-    dhdt = (x_inf('h', v) - m) / tau_x('h', v)
-    dndt = (x_inf('n', v) - m) / tau_x('n', v)
-    dadt = (1/(1+exp(-(v+14)/16.6)) - a) / tau_x('a', v)
-    dbdt = (1/(1+exp((v+71)/7.3)) - b) / tau_x('b', v)
-    drdt = (1/(1+exp((v+84)/10.2)) - r) / tau_x('r', v)
-    dsdt = ((1 + tanh(v_pre / 4)) / 2) * ((1 - s) / tau_s) - (s / tau_d)
-
-    return dvdt, dmdt, dhdt, dndt, dadt, dbdt, drdt, dsdt
+def dvdt(v, m, h, n, a, b, r, j):
+    Cm = 1.3
+    gNa = 30
+    gK = 23
+    gV = 0.05
+    gA = 16
+    gh = 12
+    ENa = 90
+    EK = -100
+    EV = -70
+    EA = -90
+    Eh = -32.9
+    eq = (gNa * m**3 * h*(ENa-v) + gK * n**4 * (EK-v) + gA*a*b*(EA-v) + gh*r*(Eh-v) + gV*(EV-v) + j)/Cm
+    return eq
 
 
-def tau_x(x: str, v: float):
-    taus = {
-        'm': 1 / (alpha('m', v) + beta('m', v)),
-        'h': 1 / (alpha('h', v) + beta('h', v)),
-        'n': 1 / (alpha('n', v) + beta('n', v)),
+def dmdt(v, m):
+    eq = (x_inf('m', v) - m)/tau_x('m', v)
+    return eq
+
+
+def dhdt(v ,h):
+    eq = (x_inf('h', v) - h) / tau_x('h', v)
+    return eq
+
+
+def dndt(v, n):
+    eq = (x_inf('n', v) - n) / tau_x('n', v)
+    return eq
+
+
+def dadt(v, a):
+    eq = (x_inf('a', v) - a) / tau_x('a', v)
+    return eq
+
+
+def dbdt(v, b):
+    eq = (x_inf('b', v) - b) / tau_x('b', v)
+    return eq
+
+
+def drdt(v, r):
+    eq = (x_inf('r', v) - r) / tau_x('r', v)
+    return eq
+
+
+def dsdt(v, s):
+    taus = 0.2
+    taud = 20
+    eq = ((1+tanh(v/4))/2) * ((1-s)/taus) - (s/taud)
+    return eq
+
+
+def x_inf(x, v):
+    eq = {
+        'm': alpha('m', v)/(alpha('m',v)+beta('m',v)),
+        'h': alpha('h', v)/(alpha('h',v)+beta('h',v)),
+        'n': alpha('n', v)/(alpha('n',v)+beta('n',v)),
+        'a': 1/(1+exp(-(v+14)/16.6)),
+        'b': 1/(1+exp((v+71)/7.3)),
+        'r': 1/(1+exp((v+84)/10.2))
+    }
+    return eq[x]
+
+
+def tau_x(x, v):
+    eq = {
+        'm': 1/(alpha('m',v)+beta('m',v)),
+        'h': 1/(alpha('h',v)+beta('h',v)),
+        'n': 1/(alpha('n',v)+beta('n',v)),
         'a': 5,
-        'b': 1 / ((0.000009/exp((v-26)/18.5))+(0.014/(0.2+exp(-(v+70)/11)))),
-        'r': 1 / (exp(-14.59-0.086*v)+exp(-1.87+0.0701*v))
-
+        'b': 1/( ( 0.000009/exp((v-26)/18.5) ) + ( 0.014/(0.2+exp(-(v+70)/11)) ) ),
+        'r': 1/( ( exp(-14.59-0.086*v) ) + ( exp(-1.87+0.0701*v) ) )
     }
-    return taus[x]
+    return eq[x]
 
 
-def x_inf(x: str, v: float):
-    return alpha(x, v) / alpha(x, v) + beta(x, v)
-
-
-def alpha(x: str, v: float):
-    alphas = {
-        'm': -0.1*(v+38)/(exp(-(v+38)/10)-1) if v != -38 else 1/exp(-(v+38)/10),
+def alpha(x, v):
+    eq = {
+        'm': -0.1*(v+38)/(exp(-(v+38)/10)-1),
         'h': 0.07*exp(-(v+63)/20),
-        'n': 0.018*(v-25)/(1-exp(-(v-25)/25)) if v != 25 else 0.018*25/exp(-(v-25)/25),
+        'n': 0.018*(v-25)/(1-exp(-(v-25)/25)),
     }
-    return alphas[x]
+    return eq[x]
 
 
-def beta(x: str, v: float):
-    betas = {
+def beta(x, v):
+    eq = {
         'm': 4*exp(-(v+65)/18),
-        'h': 1/(exp(-(v+33)/10)+1),
-        'n': 0.0036*(v-35)/(exp((v-35)/12) - 1) if v != 35 else 0.0036*12/exp((v-35)/12)
+        'h': 1/(1+exp(-(v+33)/10)),
+        'n': 0.0036*(v-35)/(exp((v-35)/12)-1),
     }
-    return betas[x]
+    return eq[x]
